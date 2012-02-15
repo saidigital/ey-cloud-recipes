@@ -3,17 +3,6 @@
 # Recipe:: default
 #
 
-ey_cloud_report "DelayedJob" do
-  message "configuring delayed_job"
-end
-
-file "/data/#{app_name}/current/script/runner" do
-   owner node[:owner_name]
-   group node[:owner_name]
-   mode 0755
-end
-
-
 if node[:instance_role] == "app_master" || node[:instance_role] == "app" || node[:instance_role] == "solo" || (node[:instance_role] == "util" && node[:name] !~ /^(mongodb|redis|memcache)/)
   node[:applications].each do |app_name,data|
 
